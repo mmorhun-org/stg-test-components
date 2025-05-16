@@ -26,11 +26,7 @@
   "additionalBranchPrefix": "{{baseBranch}}/",
   "branchPrefix": "konflux/mintmaker/",
   "enabledManagers": [
-    "tekton",
-    "dockerfile",
-    "kubernetes",
-    "kustomize",
-    "pyenv",
+    "tekton"
   ],
   "tekton": {
     "additionalBranchPrefix": "",
