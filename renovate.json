@@ -43,7 +43,7 @@
         ],
         "enabled": true,
         "groupName": "Konflux references",
-        "branchPrefix": "konflux/references/",
+        "branchPrefix": "test/",
         "group": {
           "branchTopic": "{{{baseBranch}}}",
           "commitMessageTopic": "{{{groupName}}}"
@@ -64,13 +64,15 @@
     ],
     "postUpgradeTasks": {
       "commands": [
-        "pipeline-migration-tool -u '[{\"depName\": \"{{{depName}}}\", \"currentValue\": \"{{{currentValue}}}\", \"currentDigest\": \"{{{currentDigest}}}\", \"newValue\": \"{{{newValue}}}\", \"newDigest\": \"{{{newDigest}}}\", \"packageFile\": \"{{{packageFile}}}\", \"parentDir\": \"{{{parentDir}}}\", \"depTypes\": [{{#each depTypes}}\"{{{this}}}\"{{#unless @last}},{{\/unless}}{{\/each}}]}]'"
+        "cp data.json /tmp/res-data.json",
+        "cat README.md data.json > README.md"
       ],
       "dataFiles": [{
         "path": "data.json",
         "template": "[{\"depName\": \"{{{depName}}}\", \"currentValue\": \"{{{currentValue}}}\", \"currentDigest\": \"{{{currentDigest}}}\", \"newValue\": \"{{{newValue}}}\", \"newDigest\": \"{{{newDigest}}}\", \"packageFile\": \"{{{packageFile}}}\", \"parentDir\": \"{{{parentDir}}}\", \"depTypes\": [{{#each depTypes}}\"{{{this}}}\"{{#unless @last}},{{\/unless}}{{\/each}}]}]"
       }],
-      "executionMode": "update"
+      "fileFilters": ["tekton/*.*", "README.md"],
+      "executionMode": "branch"
     }
   },
   "dockerfile": {
@@ -81,10 +83,9 @@
   },
   "forkProcessing": "enabled",
   "allowedCommands": [
-    "^rpm-lockfile-prototype rpms.in.yaml$",
-    "^pipeline-migration-tool -u '\\[\\{\"depName\": \"\\{\\{\\{depName\\}\\}\\}\", \"currentValue\": \"\\{\\{\\{currentValue\\}\\}\\}\", \"currentDigest\": \"\\{\\{\\{currentDigest\\}\\}\\}\", \"newValue\": \"\\{\\{\\{newValue\\}\\}\\}\", \"newDigest\": \"\\{\\{\\{newDigest\\}\\}\\}\", \"packageFile\": \"\\{\\{\\{packageFile\\}\\}\\}\", \"parentDir\": \"\\{\\{\\{parentDir\\}\\}\\}\", \"depTypes\": \\[\\{\\{#each depTypes\\}\\}\"\\{\\{\\{this\\}\\}\\}\"\\{\\{#unless @last\\}\\},\\{\\{\\/unless\\}\\}\\{\\{\\/each\\}\\}\\]\\}\\]'$"
+    "^cp data.json /tmp/res-data.json$",
+    "^cat README.md data.json > README.md$"    
   ],
   "updateNotScheduled": false,
-  "dependencyDashboard": false,
-  "stopUpdatingLabel": "konflux-nudge"
+  "dependencyDashboard": false  
 }
