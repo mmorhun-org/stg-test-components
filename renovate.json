@@ -14,9 +14,7 @@
   "platformCommit": "enabled",
   "autodiscover": false,
   "pruneStaleBranches": false,
-  "branchConcurrentLimit": 0,
-  "containerVulnerabilityAlerts": true,
-  "rpmVulnerabilityAlerts": true,
+  "branchConcurrentLimit": 0,    
   "customEnvVariables": {
     "GOTOOLCHAIN": "auto"
   },
