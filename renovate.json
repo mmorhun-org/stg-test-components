@@ -69,7 +69,7 @@
       ],
       "dataFileTemplate": "[{\"depName\": \"{{{depName}}}\", \"currentValue\": \"{{{currentValue}}}\", \"currentDigest\": \"{{{currentDigest}}}\", \"newValue\": \"{{{newValue}}}\", \"newDigest\": \"{{{newDigest}}}\", \"packageFile\": \"{{{packageFile}}}\", \"parentDir\": \"{{{parentDir}}}\", \"depTypes\": [{{#each depTypes}}\"{{{this}}}\"{{#unless @last}},{{\/unless}}{{\/each}}]}]",
       "fileFilters": ["tekton/*.*", "README.md"],
-      "executionMode": "update"
+      "executionMode": "branch"
     }
   },
   "dockerfile": {
